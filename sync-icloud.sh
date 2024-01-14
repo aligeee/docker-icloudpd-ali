@@ -264,7 +264,7 @@ Initialise(){
          LogWarning "Cannot find ${icloud_domain} IP address - retrying"
       fi
       sleep 10
-      icloud_dot_com="$(nslookup -vc -type=a ${icloud_domain} | grep -v "127.0.0.1" | grep Address | tail -1 | awk '{print $2}')"
+      icloud_dot_com="$(nslookup -type=a ${icloud_domain} | grep -v "127.0.0.1" | grep Address | tail -1 | awk '{print $2}')"
       dns_counter=$((dns_counter+1))
       if [ "${dns_counter}" = 12 ]; then
          LogError "Cannot find ${icloud_domain} IP address. Please check your DNS/Firewall settings. DNS server must be available using TCP port 53 - exiting"
